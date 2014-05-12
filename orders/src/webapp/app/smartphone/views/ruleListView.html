@@ -1,0 +1,84 @@
+<div data-role="page" id="ruleListView" >
+	<div data-role="header" class="item-view-header">
+		<div id="backToOrders" class="image"></div>
+		<h1 id="ruleTitle"></h1>
+	</div>
+	<div data-role="content" id="ruleListViewWrapper" class="app-wrapper" class="rule-list-view-body">
+	
+		<div id="ruleListViewScroller" class="app-scroller">
+			<div id="ruleList">
+			</div>
+			<div id="noRules" class="no-rules"></div>
+			
+			<div id="ruleEditList" class="rule-edit">
+			</div>
+			
+		</div>
+		
+		<div id="addRulesMask" class="rule-list-view-mask">
+			<div id="addRules" class="add-rule">
+				<div class="add-rule-header"><h1 id="newRule" class="add-rule-title"></h1></div>
+				<div class="add-rule-info">
+					<label id="lblAmount"></label>
+					<input id="amount" type="text" />
+				</div>
+				<div class="add-rule-info">
+					<div><label id="lblColor"></label></div>
+					<div class="rule-color" id="rule_colorPicker" value="">
+						<span class="orange-color">
+							<span></span>
+						</span>
+						
+						<span class="yellow-color">
+							<span></span>
+						</span>
+						
+						<span class="red-color">
+							<span></span>
+						</span>
+						
+					</div>
+				</div>
+				<div class="save-rule">
+					<span class="cancel-rule-button" id="btnCancelRule"></span>
+					<span class="save-rule-button" id="btnSaveRule"></span>
+				</div>
+			</div>
+			
+			<div id="editRules" class="add-rule">
+				<div class="add-rule-header"><h1 id="editRuleTitle" class="add-rule-title"></h1></div>
+				<div class="add-rule-info">
+					<label id="lblEditAmount"></label>
+					<input id="editAmount" type="text" />
+				</div>
+				<div class="add-rule-info">
+					<div><label id="lblEditColor"></label></div>
+					<div class="rule-color" id="edit_rule_colorPicker" value="">
+						<span class="orange-color">
+							<span></span>
+						</span>
+						
+						<span class="yellow-color">
+							<span></span>
+						</span>
+						
+						<span class="red-color">
+							<span></span>
+						</span>
+						
+					</div>
+				</div>
+				<div class="save-rule">
+					<span class="cancel-rule-button" id="btnEditCancelRule"></span>
+					<span class="save-rule-button" id="btnUpdateRule"></span>
+				</div>
+			</div>
+		</div>
+		<div class="offlineOnlineMask">
+			<div class="offline">
+				<div id="offLineRule" class="offline-line1"></div>
+				<div id="onLineRule" class="online-line1"></div>
+			</div>
+		</div>
+	</div>
+</div>

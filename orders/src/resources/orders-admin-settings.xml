@@ -1,0 +1,13 @@
+<context name="orders" category="orders" xmlns="SettingsManager.dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="SettingsManager.dtd http://com.hp.ee.server.admin.settings/ ">      
+		<!-- Offline Settings-->
+		<setting name="client.support.offline.mode"
+				 sectionKey="sections.general.client.name"
+				 nameKey="settings.general.client.support.offline.mode.name"
+				 descKey="settings.general.client.support.offline.mode.desc"
+				 refreshRate="Immediate"
+				 settingType="global"
+				 required="true"
+				 displayInUI="true">
+			<boolean>true</boolean>
+		</setting>
+	</context>

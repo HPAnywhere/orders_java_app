@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         metadata-complete="true" version="2.5">
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>com.hp.sw.bto.ast.security.lwsso.conf.fileLocation</param-name>
+        <param-value>${bsf_conf}\lwssofmconf.xml</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+	
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+	<filter>
+        <filter-name>DiamondTenantFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>DiamondTenantFilter</filter-name>
+        <url-pattern>/rest/*</url-pattern>
+        <url-pattern>/services/*</url-pattern>
+    </filter-mapping>
+ 
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+ 
+    <filter>
+        <filter-name>DiamondSecurityFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>DiamondSecurityFilter</filter-name>
+        <url-pattern>/rest/*</url-pattern>
+        <url-pattern>/services/*</url-pattern>
+    </filter-mapping>
+
+    <!-- End of new filters for miniapps -->
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <!--uncomment the line below to support cxf context, currently in comment since we switched to jersey-->
+        <!--<param-value>classpath*:META-INF/spring/*Context.xml classpath*:META-INF/cxf/RestBeans.xml</param-value>-->
+        <param-value>classpath*:META-INF/spring/*Context.xml</param-value>
+    </context-param>
+
+    <!--jersey servlet - to support JSON we added the POJOMappingFeature in the init params-->
+    <servlet>
+        <servlet-name>jersey-serlvet</servlet-name>
+        <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>com.hp.btoaw.integration.service.rest</param-value>
+        </init-param>
+        <init-param>
+            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>jersey-serlvet</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>miniapp-jersey-serlvet</servlet-name>
+        <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <!--please type here the packages you wish jersey to scan-->
+            <param-value>com.hp.eem
+            </param-value>
+        </init-param>
+        <init-param>
+            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>miniapp-jersey-serlvet</servlet-name>
+        <url-pattern>/services/*</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>tweeter-servlet</servlet-name>
+        <servlet-class>com.hp.eem.restapi.TwitterServlet</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>tweeter-servlet</servlet-name>
+        <url-pattern>/SampleWS</url-pattern>
+    </servlet-mapping>
+
+    <!--cxf servlet - now we switch to jersey , uncomment if switching back-->
+    <!--<servlet>-->
+    <!--<servlet-name>rest</servlet-name>-->
+    <!--<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>-->
+    <!--<load-on-startup>1</load-on-startup>-->
+    <!--</servlet>-->
+
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>rest</servlet-name>-->
+    <!--<url-pattern>/rest/*</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <!---->
+
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+
+</web-app>

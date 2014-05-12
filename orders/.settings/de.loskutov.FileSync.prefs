@@ -1,0 +1,7 @@
+WARNING=DO NOT MODIFY THIS FILE IF YOU DON'T UNDERSTAND
+defaultDestination=BTOA_HOME/tomcat/webapps/orders-web
+defaultVariables=
+eclipse.preferences.version=1
+includeTeamPrivateFiles=false
+map|0=src/webapp|BTOA_HOME/tomcat/webapps/orders-web|,|WEB-INF/web.xml|,
+useCurrentDateForDestinationFiles=false
